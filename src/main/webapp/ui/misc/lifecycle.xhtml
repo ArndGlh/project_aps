@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">
+        Lifecycle
+    </ui:define>
+
+    <ui:define name="description">
+        Lifecycle is a utility component which displays the execution time of each JSF phase. <br />
+        It also synchronizes automatically after each AJAX request.
+    </ui:define>
+
+    <ui:define name="implementation">
+        <p:commandButton value="Dummy Ajax Request" update="@none" />
+        <h:commandButton value="Dummy Ajax Request">
+            <f:ajax render="@none" />
+        </h:commandButton>
+
+        <br />
+        <br />
+
+        <p:lifecycle/>
+    </ui:define>
+
+    <ui:define name="source">
+        <p:tabView>
+            <p:tab title="lifecycle.xhtml">
+                <pre name="code" class="brush:xml">
+&lt;p:commandButton value="Dummy Ajax Request" update="@none" /&gt;
+&lt;h:commandButton value="Dummy Ajax Request"&gt;
+    &lt;f:ajax render="@none" /&gt;
+&lt;/h:commandButton&gt;
+
+&lt;p:lifecycle/&gt;
+                </pre>
+            </p:tab>
+
+        </p:tabView>
+
+    </ui:define>
+
+</ui:composition>

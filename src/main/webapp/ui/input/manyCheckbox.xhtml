@@ -1,0 +1,335 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="head">
+        <style type="text/css">
+            .ui-datalist ul {
+                padding: 0px 10px 0 20px;
+                margin: 5px 0;
+            }
+
+            .ui-datalist {
+                margin-bottom: 10px
+            }
+
+            .ui-noborder tr.ui-widget-content {
+                background: none;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="title">
+        SelectManyCheckbox
+    </ui:define>
+
+    <ui:define name="description">
+        SelectManyCheckbox is used to choose multiple items from a collection.
+    </ui:define>
+
+    <ui:define name="implementation">
+
+        <h:form>
+            <h3 style="margin-top:0px">Basic Layout</h3>
+            <p:selectManyCheckbox id="basic" value="#{checkboxView.selectedConsoles}">
+                <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+            </p:selectManyCheckbox>
+
+            <h3>Grid Layout</h3>
+            <p:selectManyCheckbox id="grid" value="#{checkboxView.selectedCities}" layout="grid" columns="3">
+                <f:selectItems value="#{checkboxView.cities}" var="city" itemLabel="#{city}" itemValue="#{city}" />
+            </p:selectManyCheckbox>
+
+            <h3>Responsive</h3>
+            <p:selectManyCheckbox id="grid2" value="#{checkboxView.selectedCities2}" layout="responsive" columns="3">
+                <f:selectItems value="#{checkboxView.cities}" var="city" itemLabel="#{city}" itemValue="#{city}" />
+            </p:selectManyCheckbox>
+
+            <h3>Custom Layout</h3>
+            <p:outputPanel id="customPanel" style="margin-bottom:20px">
+                <p:selectManyCheckbox id="custom" value="#{checkboxView.selectedConsoles2}" layout="custom">
+                    <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                    <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                    <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+                </p:selectManyCheckbox>
+
+                <div class="ui-grid ui-grid-responsive">
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-4" style="text-align:center">
+                            <h:outputLabel for="opt1" value="Xbox One" style="display:block;margin-bottom: 8px"/>
+                            <p:checkbox id="opt1" for="custom" itemIndex="0" />
+                        </div>
+                        <div class="ui-grid-col-4" style="text-align:center">
+                            <h:outputLabel for="opt2" value="PS4" style="display:block;margin-bottom: 8px"/>
+                            <p:checkbox id="opt2" for="custom" itemIndex="1" />
+                        </div>
+                        <div class="ui-grid-col-4" style="text-align:center">
+                            <h:outputLabel for="opt3" value="Wii U" style="display:block;margin-bottom: 8px"/>
+                            <p:checkbox id="opt3" for="custom" itemIndex="2" />
+                        </div>
+                    </div>
+                </div>
+            </p:outputPanel>
+
+            <h3>Grouped</h3>
+            <p:selectManyCheckbox id="grid3" value="#{checkboxView.selectedCars}" layout="pageDirection" columns="1">
+                <f:selectItems value="#{checkboxView.cars}" var="car" itemLabel="#{car}" itemValue="#{car}" />
+            </p:selectManyCheckbox>
+            
+            <p:separator />
+
+            <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-check" />
+
+            <p:dialog header="Values" modal="true" showEffect="clip" widgetVar="dlg" resizable="false">
+                <p:outputPanel id="display">
+                    <p:dataList value="#{checkboxView.selectedConsoles}" var="console">
+                        <f:facet name="header">
+                            Basic
+                        </f:facet>
+                        #{console}
+                    </p:dataList>
+                    <p:dataList value="#{checkboxView.selectedCities}" var="city">
+                        <f:facet name="header">
+                            Grid
+                        </f:facet>
+                        #{city}
+                    </p:dataList>
+                    <p:dataList value="#{checkboxView.selectedCities2}" var="city">
+                        <f:facet name="header">
+                            Grid
+                        </f:facet>
+                        #{city}
+                    </p:dataList>
+                    <p:dataList value="#{checkboxView.selectedConsoles2}" var="console">
+                        <f:facet name="header">
+                            Custom
+                        </f:facet>
+                        #{console}
+                    </p:dataList>
+                    <p:dataList value="#{checkboxView.selectedCars}" var="car">
+                        <f:facet name="header">
+                            Cars
+                        </f:facet>
+                        #{car}
+                    </p:dataList>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+
+    </ui:define>
+
+    <ui:define name="source">
+        <p:tabView>
+            <p:tab title="manyCheckbox.xhtml">
+                <pre name="code" class="brush:xml">
+&lt;h:form&gt;
+    &lt;h3 style="margin-top:0px"&gt;Basic Layout&lt;/h3&gt;
+    &lt;p:selectManyCheckbox id="basic" value="\#{checkboxView.selectedConsoles}"&gt;
+        &lt;f:selectItem itemLabel="Xbox One" itemValue="Xbox One" /&gt;
+        &lt;f:selectItem itemLabel="PS4" itemValue="PS4" /&gt;
+        &lt;f:selectItem itemLabel="Wii U" itemValue="Wii U" /&gt;
+    &lt;/p:selectManyCheckbox&gt;
+
+    &lt;h3&gt;Grid Layout&lt;/h3&gt;
+    &lt;p:selectManyCheckbox id="grid" value="\#{checkboxView.selectedCities}" layout="grid" columns="3"&gt;
+        &lt;f:selectItems value="\#{checkboxView.cities}" var="city" itemLabel="\#{city}" itemValue="\#{city}" /&gt;
+    &lt;/p:selectManyCheckbox&gt;
+
+    &lt;h3&gt;Responsive&lt;/h3&gt;
+    &lt;p:selectManyCheckbox id="grid2" value="\#{checkboxView.selectedCities2}" layout="responsive" columns="3"&gt;
+        &lt;f:selectItems value="\#{checkboxView.cities}" var="city" itemLabel="\#{city}" itemValue="\#{city}" /&gt;
+    &lt;/p:selectManyCheckbox&gt;
+
+    &lt;h3&gt;Custom Layout&lt;/h3&gt;
+    &lt;p:outputPanel id="customPanel" style="margin-bottom:20px"&gt;
+        &lt;p:selectManyCheckbox id="custom" value="\#{checkboxView.selectedConsoles2}" layout="custom"&gt;
+            &lt;f:selectItem itemLabel="Xbox One" itemValue="Xbox One" /&gt;
+            &lt;f:selectItem itemLabel="PS4" itemValue="PS4" /&gt;
+            &lt;f:selectItem itemLabel="Wii U" itemValue="Wii U" /&gt;
+        &lt;/p:selectManyCheckbox&gt;
+
+        &lt;div class="ui-grid ui-grid-responsive"&gt;
+            &lt;div class="ui-grid-row"&gt;
+                &lt;div class="ui-grid-col-4" style="text-align:center"&gt;
+                    &lt;h:outputLabel for="opt1" value="Xbox One" style="display:block;margin-bottom:8px"/&gt;
+                    &lt;p:checkbox id="opt1" for="custom" itemIndex="0" /&gt;
+                &lt;/div&gt;
+                &lt;div class="ui-grid-col-4" style="text-align:center"&gt;
+                    &lt;h:outputLabel for="opt2" value="PS4" style="display:block;margin-bottom:8px"/&gt;
+                    &lt;p:checkbox id="opt2" for="custom" itemIndex="1" /&gt;
+                &lt;/div&gt;
+                &lt;div class="ui-grid-col-4" style="text-align:center"&gt;
+                    &lt;h:outputLabel for="opt3" value="Wii U" style="display:block;margin-bottom:8px"/&gt;
+                    &lt;p:checkbox id="opt3" for="custom" itemIndex="2" /&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/p:outputPanel&gt;
+
+    &lt;h3&gt;Grouped&lt;/h3&gt;
+    &lt;p:selectManyCheckbox id="grid3" value="\#{checkboxView.selectedCars}" layout="pageDirection" columns="1"&gt;
+        &lt;f:selectItems value="\#{checkboxView.cars}" var="car" itemLabel="\#{car}" itemValue="\#{car}" /&gt;
+    &lt;/p:selectManyCheckbox&gt;
+
+    &lt;p:separator /&gt;
+
+    &lt;p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-check" /&gt;
+
+    &lt;p:dialog header="Values" modal="true" showEffect="clip" widgetVar="dlg" resizable="false"&gt;
+        &lt;p:outputPanel id="display"&gt;
+            &lt;p:dataList value="\#{checkboxView.selectedConsoles}" var="console"&gt;
+                &lt;f:facet name="header"&gt;
+                    Basic
+                &lt;/f:facet&gt;
+                \#{console}
+            &lt;/p:dataList&gt;
+            &lt;p:dataList value="\#{checkboxView.selectedCities}" var="city"&gt;
+                &lt;f:facet name="header"&gt;
+                    Grid
+                &lt;/f:facet&gt;
+                \#{city}
+            &lt;/p:dataList&gt;
+            &lt;p:dataList value="\#{checkboxView.selectedCities2}" var="city"&gt;
+                &lt;f:facet name="header"&gt;
+                    Grid
+                &lt;/f:facet&gt;
+                \#{city}
+            &lt;/p:dataList&gt;
+            &lt;p:dataList value="\#{checkboxView.selectedConsoles2}" var="console"&gt;
+                &lt;f:facet name="header"&gt;
+                    Custom
+                &lt;/f:facet&gt;
+                \#{console}
+            &lt;/p:dataList&gt;
+            &lt;p:dataList value="\#{checkboxView.selectedCars}" var="car"&gt;
+                &lt;f:facet name="header"&gt;
+                    Cars
+                &lt;/f:facet&gt;
+                \#{car}
+            &lt;/p:dataList&gt;
+        &lt;/p:outputPanel&gt;
+    &lt;/p:dialog&gt;
+&lt;/h:form&gt;
+                </pre>
+            </p:tab>
+
+            <p:tab title="CheckboxView.java">
+                <pre name="code" class="brush:java">
+package org.primefaces.showcase.view.input;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
+
+@ManagedBean
+public class CheckboxView {
+
+    private String[] selectedConsoles;
+    private String[] selectedConsoles2;
+    private String[] selectedCities;
+    private String[] selectedCities2;
+    private List&lt;String&gt; cities;
+    private List&lt;SelectItem&gt; cars;
+    private String[] selectedCars;
+
+    @PostConstruct
+    public void init() {
+        cities = new ArrayList&lt;String&gt;();
+        cities.add("Miami");
+        cities.add("London");
+        cities.add("Paris");
+        cities.add("Istanbul");
+        cities.add("Berlin");
+        cities.add("Barcelona");
+        cities.add("Rome");
+        cities.add("Brasilia");
+        cities.add("Amsterdam");
+
+        cars = new ArrayList&lt;SelectItem&gt;();
+        SelectItemGroup germanCars = new SelectItemGroup("German Cars");
+        germanCars.setSelectItems(new SelectItem[] {
+            new SelectItem("BMW", "BMW"),
+            new SelectItem("Mercedes", "Mercedes"),
+            new SelectItem("Volkswagen", "Volkswagen")
+        });
+        
+        SelectItemGroup americanCars = new SelectItemGroup("American Cars");
+        americanCars.setSelectItems(new SelectItem[]{
+            new SelectItem("Chrysler", "Chrysler"),
+            new SelectItem("GM", "GM"),
+            new SelectItem("Ford", "Ford")
+        });
+
+        cars.add(germanCars);
+        cars.add(americanCars);
+    }
+
+    public String[] getSelectedConsoles() {
+        return selectedConsoles;
+    }
+
+    public void setSelectedConsoles(String[] selectedConsoles) {
+        this.selectedConsoles = selectedConsoles;
+    }
+
+    public String[] getSelectedCities() {
+        return selectedCities;
+    }
+
+    public void setSelectedCities(String[] selectedCities) {
+        this.selectedCities = selectedCities;
+    }
+
+    public String[] getSelectedCities2() {
+        return selectedCities;
+    }
+
+    public void setSelectedCities(String[] selectedCities2) {
+        this.selectedCities2 = selectedCities2;
+    }
+
+    public String[] getSelectedConsoles2() {
+        return selectedConsoles2;
+    }
+
+    public void setSelectedConsoles2(String[] selectedConsoles2) {
+        this.selectedConsoles2 = selectedConsoles2;
+    }
+
+    public List&lt;String&gt; getCities() {
+        return cities;
+    }
+
+    public List&lt;SelectItem&gt; getCars() {
+        return cars;
+    }
+
+    public void setCars(List&lt;SelectItem&gt; cars) {
+        this.cars = cars;
+    }
+
+    public String[] getSelectedCars() {
+        return selectedCars;
+    }
+
+    public void setSelectedCars(String[] selectedCars) {
+        this.selectedCars = selectedCars;
+    }
+}
+
+                </pre>
+            </p:tab>
+
+        </p:tabView>
+
+    </ui:define>
+
+</ui:composition>
