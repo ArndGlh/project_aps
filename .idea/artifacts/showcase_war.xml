@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="showcase:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="showcase-6.3-SNAPSHOT.war">
-      <element id="artifact" artifact-name="showcase:war exploded" />
-    </root>
-  </artifact>
-</component>
