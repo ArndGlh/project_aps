@@ -25,6 +25,11 @@
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>ServletTest</servlet-name>
+		<servlet-class>com.test.servlet.ServletTest</servlet-class>
+	</servlet>
 
 	<!-- Map these files with JSF -->
 	<servlet-mapping>
@@ -42,6 +47,10 @@
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServletTest</servlet-name>
+		<url-pattern>/test</url-pattern>
 	</servlet-mapping>
 
 </web-app>
