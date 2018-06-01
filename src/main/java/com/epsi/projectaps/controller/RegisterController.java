@@ -1,4 +1,4 @@
-package com.keylesson.controller;
+package com.epsi.projectaps.controller;
 
 import java.util.Locale;
 
@@ -7,12 +7,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import com.keylesson.model.User;
+import com.epsi.projectaps.model.User;
 
 @ManagedBean
 @RequestScoped
 public class RegisterController {
 
+
+	// Classe a supprimer peut être
 	private User user = new User();
 
 	public User getUser() {
