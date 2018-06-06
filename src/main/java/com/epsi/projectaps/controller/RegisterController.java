@@ -23,7 +23,6 @@ public class RegisterController {
 	}
 
 	public String addUser() throws SQLException {
-		System.out.println("add user");
 		if (!user.getPassword().equals(user.getPasswordConfirm())) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
@@ -31,7 +30,6 @@ public class RegisterController {
 							"Registration failure : passwords must match", ""));
 		} else {
 			UserDao userDao = new UserDao();
-			System.out.println("damn");
 			if(userDao.addUser(user) == 1) {
 				FacesContext.getCurrentInstance().addMessage(
 								null,
