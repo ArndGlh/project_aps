@@ -1,27 +1,24 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui">
-    <p:menubar>
-        <p:submenu label="Recherche" icon="ui-icon-search">
-            <p:menuitem value="Evénement" url="#" />
-            <p:menuitem value="Utilisateur" url="#" />
-        </p:submenu>
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <h:form>
+        <p:menubar>
 
-        <p:menuitem>
-            <a class="ui-menuitem-link ui-corner-all" href="#">
-                <span class="ui-menuitem-text"><i class="fas fa-address-book"></i> Contacts</span>
-            </a>
-        </p:menuitem>
+            <p:submenu label="Recherche" icon="fa fa-search">
+                <p:menuitem value="Evénement" url="#" />
+                <p:menuitem value="Utilisateur" url="#" />
+            </p:submenu>
 
-        <p:menuitem>
-            <a class="ui-menuitem-link ui-corner-all" href="#">
-                <span class="ui-menuitem-text"><i class="fas fa-calendar"></i> Evénements</span>
-            </a>
-        </p:menuitem>
+            <p:menuitem value="Contacts" url="#" icon="fa fa-address-book" />
 
-        <p:menuitem value="Jeux" url="#" />
+            <p:menuitem value="Evénements" url="#" icon="fa fa-calendar" />
 
-        <p:menuitem value="Profil" url="#" />
-    </p:menubar>
+            <p:menuitem value="Jeux" url="#" icon="fa fa-dice" />
+
+            <p:menuitem value="Profil" url="#" icon="fa fa-user" />
+
+        </p:menubar>
+    </h:form>
 </ui:composition>
