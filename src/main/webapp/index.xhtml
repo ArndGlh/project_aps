@@ -2,37 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
  
 	<h:head>
         <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
     </h:head>
     
     <h:body>
-        <p:menubar>
-            <p:submenu label="Recherche" icon="ui-icon-search">
-                <p:menuitem value="Evénement" url="#" />
-                <p:menuitem value="Utilisateur" url="#" />
-            </p:submenu>
-
-            <p:menuitem>
-                <a class="ui-menuitem-link ui-corner-all" href="#">
-                    <span class="ui-menuitem-text"><i class="fas fa-address-book"></i> Contacts</span>
-                </a>
-            </p:menuitem>
-
-            <p:menuitem>
-                <a class="ui-menuitem-link ui-corner-all" href="#">
-                    <span class="ui-menuitem-text"><i class="fas fa-calendar"></i> Evénements</span>
-                </a>
-            </p:menuitem>
-
-            <p:menuitem value="Jeux" url="#" />
-
-            <p:menuitem value="Profil" url="#" />
-
-        </p:menubar>
+		<ui:include src="/WEB-INF/include/menubar.xhtml" />
         <h2>Registration form</h2> <br/>
         
         <h:form id="myForm">
