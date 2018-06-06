@@ -1,21 +1,28 @@
 package com.epsi.projectaps.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Event {
 
+    private int id;
     private String name;
-    private int idEvent;
-    private String lieu;
+    private String idLieu;
     private Date date;
     private String description;
 
-    public Event(String name, int idEvent, String lieu, Date date, String description) {
+    public Event(String name, String idLieu, Date date, String description) {
         this.name = name;
-        this.idEvent = idEvent;
-        this.lieu = lieu;
+        this.idLieu = idLieu;
         this.date = date;
         this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -26,20 +33,12 @@ public class Event {
         this.name = name;
     }
 
-    public int getIdEvent() {
-        return idEvent;
+    public String getIdLieu() {
+        return idLieu;
     }
 
-    public void setIdEvent(int idEvent) {
-        this.idEvent = idEvent;
-    }
-
-    public String getLieu() {
-        return lieu;
-    }
-
-    public void setLieu(String lieu) {
-        this.lieu = lieu;
+    public void setIdLieu(String idLieu) {
+        this.idLieu = idLieu;
     }
 
     public Date getDate() {
