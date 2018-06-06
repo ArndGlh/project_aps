@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PrimeFaces-Hello-World-Example.iml" filepath="$PROJECT_DIR$/PrimeFaces-Hello-World-Example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project_aps.iml" filepath="$PROJECT_DIR$/project_aps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project_aps.iml" filepath="$PROJECT_DIR$/project_aps.iml" />
     </modules>
   </component>
 </project>
