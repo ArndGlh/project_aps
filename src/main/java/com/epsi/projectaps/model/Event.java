@@ -7,8 +7,11 @@ public class Event {
     private int id;
     private String name;
     private String idLieu;
+    private String tmpDate;
     private Date date;
     private String description;
+
+    public Event() {}
 
     public Event(String name, String idLieu, Date date, String description) {
         this.name = name;
