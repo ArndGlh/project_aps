@@ -7,11 +7,12 @@ public class Event {
     private int id;
     private String name;
     private String idLieu;
-    private String tmpDate;
     private Date date;
     private String description;
 
-    public Event() {}
+    public Event() {
+        this.date = new Date(2018, 5, 20);
+    }
 
     public Event(String name, String idLieu, Date date, String description) {
         this.name = name;
@@ -48,8 +49,9 @@ public class Event {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(java.util.Date date) {
+        System.out.println("here");
+        this.date = (java.sql.Date) date;
     }
 
     public String getDescription() {

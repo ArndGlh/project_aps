@@ -2,6 +2,9 @@ package com.epsi.projectaps.controller;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.faces.application.FacesMessage;
@@ -20,6 +23,10 @@ import org.primefaces.event.SelectEvent;
 public class EventController {
 
     private Event event = new Event();
+    private Date date;
+    private String name;
+    private String idLieu;
+    private String description;
 
     public EventController() {
         FacesContext.getCurrentInstance().getViewRoot()
@@ -28,7 +35,10 @@ public class EventController {
 
     public String addEvent() throws SQLException {
         EventDao eventDao = new EventDao();
-        System.out.println(event.getName());
+        System.out.println(name);
+        LocalDate lDate = date.toInstant().atZone(ZoneId.of("Europe/Paris").systemDefault()).toLocalDate();
+        java.sql.Date sqlDate = java.sql.Date.valueOf(lDate);
+        event = new Event(name, idLieu, sqlDate, description);
         if(eventDao.addEvent(event) == 1) {
             FacesContext.getCurrentInstance().addMessage(
                     null,
@@ -54,5 +64,37 @@ public class EventController {
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIdLieu() {
+        return idLieu;
+    }
+
+    public void setIdLieu(String idLieu) {
+        this.idLieu = idLieu;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

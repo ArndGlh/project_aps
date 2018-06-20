@@ -20,16 +20,16 @@
         <table>
             <tr>
                 <td>Nom</td>
-                <td><p:inputText value="#{eventController.event.name}" required="true" id="Name" size="10"/></td>
+                <td><p:inputText value="#{eventController.name}" required="true" id="Name" size="10"/></td>
             </tr>
             <tr>
                 <td>Lieu</td>
-                <td><p:inputText value="#{eventController.event.idLieu}" required="false" id="idLieu"/></td>
+                <td><p:inputText value="#{eventController.idLieu}" required="false" id="idLieu"/></td>
             </tr>
             <tr>
                 <td>Date</td>
                 <td>
-                    <p:calendar id="Date" required="false" value="#{eventController.event.tmpDate}" pattern="dd/MM/yyyy" />
+                    <p:calendar id="Date" required="false" value="#{eventController.date}" pattern="dd/MM/yyyy" />
                     <!--<p:inputText value="#{eventController.event.date}">
                         <f:convertDateTime pattern="dd/MM/yyyy" />
                     </p:inputText>-->
@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <td>Description</td>
-                <td><p:inputText value="#{eventController.event.description}" required="false" id="Description"/></td>
+                <td><p:inputText value="#{eventController.description}" required="false" id="Description"/></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
