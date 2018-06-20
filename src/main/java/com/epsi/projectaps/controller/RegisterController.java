@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import com.epsi.projectaps.Dao.UserDao;
+import com.epsi.projectaps.dao.UserDao;
 import com.epsi.projectaps.model.User;
 
 @ManagedBean

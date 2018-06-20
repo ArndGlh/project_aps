@@ -1,4 +1,4 @@
-package com.epsi.projectaps.Dao;
+package com.epsi.projectaps.dao;
 
 import com.epsi.projectaps.model.User;
 
