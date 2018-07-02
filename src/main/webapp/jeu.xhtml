@@ -16,5 +16,35 @@
     <ui:include src="/WEB-INF/include/menubar.xhtml" />
     <h2>Jeux</h2><br/>
     <p:button outcome="new_jeu" value="New" icon="fa fa-plus-circle fa-sm" />
+    <h:form id="formListJeux">
+        <p:growl id="msgs" showDetail="true"/>
+
+        <p:dataTable id="jeux" var="jeu" value="#{jeuDao.findAllJeu()}" editable="true" style="margin-bottom:20px">
+            <f:facet name="header">
+                Liste des jeux
+            </f:facet>
+
+            <p:ajax event="rowEdit" listener="#{DataTableEditJeu.onRowEdit}" update=":formListJeux:msgs" />
+            <p:ajax event="rowEditCancel" listener="#{DataTableEditJeu.onRowCancel}" update=":formListJeux:msgs" />
+
+            <p:column headerText="Id">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{jeu.id}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput" value="#{jeu.id}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Nom">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{jeu.nom}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{jeu.nom}" style="width:100%" label="Nom"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column style="width:32px">
+                <p:rowEditor />
+            </p:column>
+        </p:dataTable>
+    </h:form>
 </h:body>
 </html>

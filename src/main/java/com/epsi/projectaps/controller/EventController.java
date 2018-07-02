@@ -16,7 +16,6 @@ import com.epsi.projectaps.dao.EventDao;
 import com.epsi.projectaps.dao.UserDao;
 import com.epsi.projectaps.model.Event;
 import com.epsi.projectaps.model.User;
-import org.primefaces.event.SelectEvent;
 
 @ManagedBean
 @RequestScoped

@@ -1,11 +1,17 @@
 package com.epsi.projectaps.dao;
 
 import com.epsi.projectaps.model.Jeu;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+@ManagedBean(name = "jeuDao")
 public class JeuDao extends Database{
 
     public JeuDao() {
@@ -40,10 +46,24 @@ public class JeuDao extends Database{
         return null;
     }
 
-    public ResultSet findAllJeu(){
+    public List<Jeu> findAllJeu(){
         try {
             PreparedStatement statement = getConnexion().prepareStatement("SELECT * FROM JEU");
-            return statement.executeQuery();
+            ResultSet rs = statement.executeQuery();
+            List<Jeu> lj = new ArrayList<>();
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String nom = rs.getString("name");
+                String regles = rs.getString("regle");
+                Boolean de = rs.getBoolean("de");
+                Boolean carte = rs.getBoolean("carte");
+                int nombreJoueurMini = rs.getInt("nombrejoueurmin");
+                int nombreJoueurMax = rs.getInt("nombrejoueurmax");
+                Jeu j = new Jeu(nom, regles, de, carte, nombreJoueurMini, nombreJoueurMax);
+                j.setId(id);
+                lj.add(j);
+            }
+            return lj;
         }catch (SQLException e){
             e.printStackTrace();
         }
