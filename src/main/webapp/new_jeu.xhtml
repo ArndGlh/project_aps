@@ -10,40 +10,27 @@
     <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
     <h:outputStylesheet name="webjars/font-awesome/4.0.3/css/font-awesome.css" />
     <h:outputStylesheet name="css/theme_fontawesome.css" />
-    <title>Evénements - Ajouter</title>
+    <title>Jeux - Ajouter</title>
 </h:head>
 <h:body>
     <ui:include src="/WEB-INF/include/menubar.xhtml" />
-    <h2>Ajouter un événement</h2><br/>
+    <h2>Ajouter un jeu</h2><br/>
 
-    <h:form id="eventForm">
+    <h:form id="jeuForm">
         <table>
             <tr>
                 <td>Nom</td>
-                <td><p:inputText value="#{eventController.name}" required="true" id="Name" size="10"/></td>
+                <td><p:inputText value="#{jeuController.nom}" required="true" id="nom" size="10"/></td>
             </tr>
             <tr>
-                <td>Lieu</td>
-                <td><p:inputText value="#{eventController.lieu}" required="false" id="lieu"/></td>
-            </tr>
-            <tr>
-                <td>Date</td>
-                <td>
-                    <p:calendar id="Date" required="false" value="#{eventController.date}" pattern="dd/MM/yyyy" />
-                    <!--<p:inputText value="#{eventController.event.date}">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </p:inputText>-->
-                </td>
-            </tr>
-            <tr>
-                <td>Description</td>
-                <td><p:inputText value="#{eventController.description}" required="false" id="Description"/></td>
+                <td>Règles</td>
+                <td><p:editor id="editor" widgetVar="editorWidget" value="#{jeuController.regles}" width="600" /></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <p:commandButton action="#{eventController.addEvent}" value="Save"/>
-                    <p:commandButton value="Reset" update="eventForm" process="@this"  >
-                        <p:resetInput target="eventForm" />
+                    <p:commandButton action="#{jeuController.addJeu}" value="Save"/>
+                    <p:commandButton value="Reset" update="jeuForm" process="@this"  >
+                        <p:resetInput target="jeuForm" />
                     </p:commandButton>
                 </td>
             </tr>

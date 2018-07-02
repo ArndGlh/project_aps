@@ -25,7 +25,7 @@ public class EventController {
     private Event event = new Event();
     private Date date;
     private String name;
-    private String idLieu;
+    private String lieu;
     private String description;
 
     public EventController() {
@@ -35,10 +35,9 @@ public class EventController {
 
     public String addEvent() throws SQLException {
         EventDao eventDao = new EventDao();
-        System.out.println(name);
         LocalDate lDate = date.toInstant().atZone(ZoneId.of("Europe/Paris").systemDefault()).toLocalDate();
         java.sql.Date sqlDate = java.sql.Date.valueOf(lDate);
-        event = new Event(name, idLieu, sqlDate, description);
+        event = new Event(name, lieu, sqlDate, description);
         if(eventDao.addEvent(event) == 1) {
             FacesContext.getCurrentInstance().addMessage(
                     null,
@@ -82,12 +81,12 @@ public class EventController {
         this.name = name;
     }
 
-    public String getIdLieu() {
-        return idLieu;
+    public String getLieu() {
+        return lieu;
     }
 
-    public void setIdLieu(String idLieu) {
-        this.idLieu = idLieu;
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
     }
 
     public String getDescription() {
