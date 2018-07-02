@@ -14,9 +14,9 @@ public class EventDao extends Database {
 
     public int addEvent(Event event){
         try {
-            PreparedStatement statement = getConnexion().prepareStatement("INSERT INTO EVENT (NAME, IDLIEU, DATE, DESCRIPTION) VALUES (?, ?, ?, ?)");
+            PreparedStatement statement = getConnexion().prepareStatement("INSERT INTO EVENT (NAME, LIEU, DATE, DESCRIPTION) VALUES (?, ?, ?, ?)");
             statement.setString(1, event.getName());
-            statement.setString(2, event.getIdLieu());
+            statement.setString(2, event.getLieu());
             statement.setDate(3, event.getDate());
             statement.setString(4, event.getDescription());
             return statement.executeUpdate();
@@ -49,9 +49,9 @@ public class EventDao extends Database {
 
     public int updateEvent(Event event){
         try {
-            PreparedStatement statement = getConnexion().prepareStatement("UPDATE EVENT SET NAME=? AND IDLIEU=? AND DATE=? AND DESCRIPTION=?  WHERE ID=?");
+            PreparedStatement statement = getConnexion().prepareStatement("UPDATE EVENT SET NAME=? AND LIEU=? AND DATE=? AND DESCRIPTION=?  WHERE ID=?");
             statement.setString(1, event.getName());
-            statement.setString(2, event.getIdLieu());
+            statement.setString(2, event.getLieu());
             statement.setDate(3, event.getDate());
             statement.setString(4, event.getDescription());
             return statement.executeUpdate();

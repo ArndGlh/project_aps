@@ -10,6 +10,8 @@ public class Jeu {
     private int nombreJoueurMini;
     private int nombreJoueurMax;
 
+    public Jeu() {}
+
     public Jeu(String nom, String regles, boolean de, boolean carte, int nombreJoueurMini, int nombreJoueurMax) {
         this.nom = nom;
         this.regles = regles;

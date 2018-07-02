@@ -6,13 +6,17 @@ public class Event {
 
     private int id;
     private String name;
-    private String idLieu;
+    private String lieu;
     private Date date;
     private String description;
 
-    public Event(String name, String idLieu, Date date, String description) {
+    public Event() {
+        this.date = new Date(2018, 5, 20);
+    }
+
+    public Event(String name, String lieu, Date date, String description) {
         this.name = name;
-        this.idLieu = idLieu;
+        this.lieu = lieu;
         this.date = date;
         this.description = description;
     }
@@ -33,20 +37,21 @@ public class Event {
         this.name = name;
     }
 
-    public String getIdLieu() {
-        return idLieu;
+    public String getLieu() {
+        return lieu;
     }
 
-    public void setIdLieu(String idLieu) {
-        this.idLieu = idLieu;
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(java.util.Date date) {
+        System.out.println("here");
+        this.date = (java.sql.Date) date;
     }
 
     public String getDescription() {

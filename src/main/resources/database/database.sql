@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `EVENT` (
   `ID` int(40) NOT NULL,
   `NAME` varchar(80) NOT NULL,
-  `IDLIEU` int(11) NOT NULL,
+  `LIEU` varchar(255) NOT NULL,
   `DATE` date NOT NULL,
   `DESCRIPTION` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -49,13 +49,13 @@ CREATE TABLE `JEU` (
 --
 -- Structure de la table `LIEU`
 --
-
+/*
 CREATE TABLE `LIEU` (
   `ID` int(40) NOT NULL,
   `NAME` varchar(80) NOT NULL,
   `LONG` varchar(80) NOT NULL,
   `LAT` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;*/
 
 -- --------------------------------------------------------
 
@@ -97,8 +97,7 @@ INSERT INTO `USER` (`ID`, `USERNAME`, `USERPASSWORD`, `USERMAIL`) VALUES
 -- Index pour la table `EVENT`
 --
 ALTER TABLE `EVENT`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_lieu_EVENT` (`IDLIEU`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Index pour la table `JEU`
@@ -109,8 +108,8 @@ ALTER TABLE `JEU`
 --
 -- Index pour la table `LIEU`
 --
-ALTER TABLE `LIEU`
-  ADD PRIMARY KEY (`ID`);
+/*ALTER TABLE `LIEU`
+  ADD PRIMARY KEY (`ID`);*/
 
 --
 -- Index pour la table `PARTICIPANT`
@@ -144,8 +143,8 @@ ALTER TABLE `JEU`
 --
 -- AUTO_INCREMENT pour la table `LIEU`
 --
-ALTER TABLE `LIEU`
-  MODIFY `ID` int(40) NOT NULL AUTO_INCREMENT;
+/*ALTER TABLE `LIEU`
+  MODIFY `ID` int(40) NOT NULL AUTO_INCREMENT;*/
 
 --
 -- AUTO_INCREMENT pour la table `USER`
@@ -160,8 +159,8 @@ ALTER TABLE `USER`
 --
 -- Contraintes pour la table `EVENT`
 --
-ALTER TABLE `EVENT`
-  ADD CONSTRAINT `FK_lieu_EVENT` FOREIGN KEY (`IDLIEU`) REFERENCES `LIEU` (`ID`);
+/*ALTER TABLE `EVENT`
+  ADD CONSTRAINT `FK_lieu_EVENT` FOREIGN KEY (`IDLIEU`) REFERENCES `LIEU` (`ID`);*/
 
 --
 -- Contraintes pour la table `PARTICIPANT`
