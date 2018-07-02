@@ -7,9 +7,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 
 import com.epsi.projectaps.dao.UserDao;
 import com.epsi.projectaps.model.User;
+import org.primefaces.event.ToggleEvent;
 
 @ManagedBean
 @RequestScoped
@@ -20,6 +22,11 @@ public class RegisterController {
 	public RegisterController() {
 		FacesContext.getCurrentInstance().getViewRoot()
 				.setLocale(new Locale("en"));
+	}
+
+	public void handleToggle(ToggleEvent event) {
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Toggled", "Visibility:" + event.getVisibility());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public String addUser() throws SQLException {
