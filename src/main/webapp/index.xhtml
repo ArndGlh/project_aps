@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
  
 <h:head>
     <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"/>
@@ -14,70 +14,38 @@
 </h:head>
 
 <h:body>
-
-    <h:panelGroup id="row1">
-        <h2>Registration form</h2><br/>
-        <h:form id="signUp">
-            <table>
+    <p:panel id="connexion">
+        <h:form id="signIn" style="align: center">
+            <p:panel style="align: center">
+            <table class="center">
                 <tr>
-                    <td>Mail</td>
-                    <td><p:password value="#{registerController.user.userMail}" required="true" feedback="true"
-                                    id="Mail"/></td>
-                </tr>
-                <tr>
-                    <td>Username</td>
-                    <td><p:inputText value="#{registerController.user.userName}" required="true" id="Username"
-                                     size="10"/>
+                    <td colspan="3" align="center">
+                        <p:outputLabel></p:outputLabel>
+                        <h3>Connexion</h3>
                     </td>
                 </tr>
                 <tr>
-                    <td>Password</td>
-                    <td><p:password value="#{registerController.user.password}" required="true" feedback="true"
-                                    id="Password"/></td>
-                </tr>
-                <tr>
-                    <td>Confirm Password</td>
-                    <td><p:password value="#{registerController.user.passwordConfirm}" required="true"
-                                    feedback="true"
-                                    id="ConfirmPassword"/></td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <p:commandButton action="#{registerController.addUser}" value="Register"/>
-                        <p:commandButton value="Reset" update="signUp" process="@this">
-                            <p:resetInput target="signUp"/>
-                        </p:commandButton>
-                    </td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td><p:messages id="messages" autoUpdate="true" closable="true"/></td>
-                </tr>
-            </table>
-        </h:form>
-    </h:panelGroup>
-
-    <h:panelGroup id="row2">
-        <h:form id="signIn">
-            <table>
-                <tr>
-                    <td>Username</td>
-                    <td><p:inputText value="#{registerController.user.userName}" required="true" id="Username2"
-                                     size="10"/>
+                    <td>Identifiant</td>
+                    <td><p:inputText value="#{registerController.user.userName}" required="true" id="Username2"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>Password</td>
+                    <td>Mot de Passe</td>
                     <td><p:password value="#{registerController.user.password}" required="true" feedback="true"
                                     id="Password2"/></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <p:commandButton action="#{registerController.verifyUser}" value="Register"/>
+                        <p:commandButton action="#{registerController.verifyUser()}" value="Se connecter"/>
                         <p:commandButton value="Reset" update="signIn" process="@this">
                             <p:resetInput target="signIn"/>
                         </p:commandButton>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center">
+                        <p:outputLabel></p:outputLabel>
+                        <p:button outcome="register.xhtml"  id="register" value="S'inscrire" styleClass="btn"/>
                     </td>
                 </tr>
             </table>
@@ -86,8 +54,9 @@
                     <td><p:messages id="messages2" autoUpdate="true" closable="true"/></td>
                 </tr>
             </table>
+            </p:panel>
         </h:form>
-    </h:panelGroup>
-
+    </p:panel>
 </h:body>
 </html>
+

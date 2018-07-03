@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"/>
+    <h:outputStylesheet name="webjars/font-awesome/4.0.3/css/font-awesome.css"/>
+    <h:outputStylesheet name="css/theme_fontawesome.css"/>
+</h:head>
+<body>
+<p:panel id="connexion">
+    <h:form id="signUp">
+        <table class="center">
+            <tr>
+                <td colspan="3" align="center">
+                    <p:button outcome="index" value="Retour" icon="fa-glass"/>
+                    <h3>Formulaire d'inscription</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>Mail</td>
+                <td><p:inputText value="#{registerController.user.userMail}" type="email" required="true" id="Mail"/></td>
+            </tr>
+            <tr>
+                <td>Identifiant</td>
+                <td><p:inputText value="#{registerController.user.userName}" required="true" id="Username"/></td>
+            </tr>
+            <tr>
+                <td>Mot de passe</td>
+                <td><p:password value="#{registerController.user.password}" required="true" feedback="true" id="Password"/></td>
+            </tr>
+            <tr>
+                <td>Confirmez mot de passe</td>
+                <td><p:password value="#{registerController.user.passwordConfirm}" required="true"
+                                feedback="true"
+                                id="ConfirmPassword"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <p:commandButton action="#{registerController.addUser}" value="S'inscrire"/>
+                    <p:commandButton value="Reset" update="signUp" process="@this">
+                        <p:resetInput target="signUp"/>
+                    </p:commandButton>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><p:messages id="messages" autoUpdate="true" closable="true"/></td>
+            </tr>
+        </table>
+    </h:form>
+</p:panel>
+</body>
+</html>

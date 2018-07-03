@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean(name = "jeuDao")
 public class JeuDao extends Database{
 
     public JeuDao() {
@@ -46,24 +45,10 @@ public class JeuDao extends Database{
         return null;
     }
 
-    public List<Jeu> findAllJeu(){
+    public ResultSet findAllJeu(){
         try {
             PreparedStatement statement = getConnexion().prepareStatement("SELECT * FROM JEU");
-            ResultSet rs = statement.executeQuery();
-            List<Jeu> lj = new ArrayList<>();
-            while(rs.next()) {
-                int id = rs.getInt("id");
-                String nom = rs.getString("name");
-                String regles = rs.getString("regle");
-                Boolean de = rs.getBoolean("de");
-                Boolean carte = rs.getBoolean("carte");
-                int nombreJoueurMini = rs.getInt("nombrejoueurmin");
-                int nombreJoueurMax = rs.getInt("nombrejoueurmax");
-                Jeu j = new Jeu(nom, regles, de, carte, nombreJoueurMini, nombreJoueurMax);
-                j.setId(id);
-                lj.add(j);
-            }
-            return lj;
+            return statement.executeQuery();
         }catch (SQLException e){
             e.printStackTrace();
         }

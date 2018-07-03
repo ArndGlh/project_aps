@@ -16,5 +16,53 @@
     <ui:include src="/WEB-INF/include/menubar.xhtml" />
     <h2>Evénements</h2><br/>
     <p:button outcome="new_event" value="New" icon="fa fa-plus-circle fa-sm" />
+    <h:form id="formListEvent">
+        <p:growl id="msgs" showDetail="true"/>
+
+        <p:dataTable id="event" var="event" value="#{eventController.findAllEvent()}" editable="true" style="margin-bottom:20px">
+            <f:facet name="header">
+                Liste des évènements
+            </f:facet>
+
+            <p:ajax event="rowEdit" listener="#{DataTableEditEvent.onRowEdit}" update=":formListEvent:msgs" />
+            <p:ajax event="rowEditCancel" listener="#{DataTableEditEvent.onRowCancel}" update=":formListEvent:msgs" />
+
+            <p:column headerText="Id">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{event.id}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput" value="#{jeu.id}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Nom">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{event.name}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{event.name}" style="width:100%" label="Nom"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Lieu">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{event.lieu}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{event.lieu}" style="width:100%" label="Lieu"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Date">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{event.date}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{event.date}" style="width:100%" label="Date"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Description">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{event.description}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{event.description}" style="width:100%" label="Description"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column style="width:32px">
+                <p:rowEditor />
+            </p:column>
+        </p:dataTable>
+    </h:form>
 </h:body>
 </html>

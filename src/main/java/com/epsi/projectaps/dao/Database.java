@@ -8,8 +8,8 @@ public class Database {
 
     /* Connexion à la base de données */
     private static final String url = "jdbc:mysql://localhost:3306/project_aps";
-    private static final String utilisateur = "project_aps";
-    private static final String motDePasse = "project_aps";
+    private static final String utilisateur = "root";
+    private static final String motDePasse = "root";
     private Connection connexion = null;
 
     /* a transformer en singleton peu être */

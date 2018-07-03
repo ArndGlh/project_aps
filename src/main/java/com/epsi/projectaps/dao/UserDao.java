@@ -28,8 +28,9 @@ public class UserDao extends Database{
 
     public ResultSet findUser(User user){
         try {
-            PreparedStatement statement = getConnexion().prepareStatement("SELECT * FROM USER WHERE USERNAME = ?");
+            PreparedStatement statement = getConnexion().prepareStatement("SELECT * FROM USER WHERE USERNAME = ? AND USERPASSWORD = ?");
             statement.setString(1, user.getUserName());
+            statement.setString(2, user.getPassword());
             return statement.executeQuery();
         }catch (SQLException e){
             e.printStackTrace();

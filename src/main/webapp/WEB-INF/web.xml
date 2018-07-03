@@ -9,6 +9,11 @@
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>com.epsi.projectaps.servlet.RegisterServlet</servlet-class>
+    </servlet>
+
 
 	<servlet-mapping>
 		<servlet-name>JSF Servlet</servlet-name>
@@ -19,6 +24,15 @@
 		<servlet-name>JSF Servlet</servlet-name>
 		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+
+
+
 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>

@@ -1,11 +1,13 @@
 package com.epsi.projectaps.controller;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.sql.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -13,9 +15,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import com.epsi.projectaps.dao.EventDao;
-import com.epsi.projectaps.dao.UserDao;
 import com.epsi.projectaps.model.Event;
-import com.epsi.projectaps.model.User;
 
 @ManagedBean
 @RequestScoped
@@ -37,23 +37,46 @@ public class EventController {
         LocalDate lDate = date.toInstant().atZone(ZoneId.of("Europe/Paris").systemDefault()).toLocalDate();
         java.sql.Date sqlDate = java.sql.Date.valueOf(lDate);
         event = new Event(name, lieu, sqlDate, description);
-        if(eventDao.addEvent(event) == 1) {
+        if (eventDao.addEvent(event) == 1) {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(
                             FacesMessage.SEVERITY_INFO,
                             "Congratulations, event adding has been successful",
                             ""));
-        }else {
+
+        } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Event adding failure : A problem occur during event adding", ""));
         }
         event = null;
-        return null;
+        return "event.xhtml";
     }
 
+    public List<Event> findAllEvent() {
+        try {
+            EventDao eventDao = new EventDao();
+            ResultSet resultSet = eventDao.findAllEvent();
+            List<Event> eventList = new ArrayList<>();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nom = resultSet.getString("name");
+                String lieu = resultSet.getString("lieu");
+                Date date = resultSet.getDate("date");
+                String description = resultSet.getString("description");
+
+                Event event = new Event(nom, lieu, date, description);
+                event.setId(id);
+                eventList.add(event);
+            }
+            return eventList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<Event>();
+    }
 
     // ==================================================================
     public Event getEvent() {

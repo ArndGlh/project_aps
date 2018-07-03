@@ -9,14 +9,17 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
-@ManagedBean
+@ManagedBean()
 @RequestScoped
 public class JeuController {
 
@@ -51,6 +54,30 @@ public class JeuController {
         }
         jeu = null;
         return null;
+    }
+
+    public List<Jeu> findAllJeu(){
+        try {
+            JeuDao jeuDao = new JeuDao();
+            ResultSet resultSet = jeuDao.findAllJeu();
+            List<Jeu> jeuList = new ArrayList<>();
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nom = resultSet.getString("name");
+                String regles = resultSet.getString("regle");
+                Boolean de = resultSet.getBoolean("de");
+                Boolean carte = resultSet.getBoolean("carte");
+                int nombreJoueurMini = resultSet.getInt("nombrejoueurmin");
+                int nombreJoueurMax = resultSet.getInt("nombrejoueurmax");
+                Jeu j = new Jeu(nom, regles, de, carte, nombreJoueurMini, nombreJoueurMax);
+                j.setId(id);
+                jeuList.add(j);
+            }
+            return jeuList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<Jeu>();
     }
 
     public Jeu getJeu() {

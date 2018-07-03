@@ -19,7 +19,7 @@
     <h:form id="formListJeux">
         <p:growl id="msgs" showDetail="true"/>
 
-        <p:dataTable id="jeux" var="jeu" value="#{jeuDao.findAllJeu()}" editable="true" style="margin-bottom:20px">
+        <p:dataTable id="jeux" var="jeu" value="#{jeuController.findAllJeu()}" editable="true" style="margin-bottom:20px">
             <f:facet name="header">
                 Liste des jeux
             </f:facet>
