@@ -11,6 +11,8 @@
     <h:outputStylesheet name="webjars/font-awesome/4.0.3/css/font-awesome.css" />
     <h:outputStylesheet name="css/theme_fontawesome.css" />
     <title>Evénements - Ajouter</title>
+    <ui:insert name="metadata"/>
+    <f:event type="preRenderView" listener="#{navigationController.isLoggedIn}" />
 </h:head>
 <h:body>
     <ui:include src="/WEB-INF/include/menubar.xhtml" />

@@ -4,11 +4,13 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"/>
     <h:outputStylesheet name="webjars/font-awesome/4.0.3/css/font-awesome.css"/>
     <h:outputStylesheet name="css/theme_fontawesome.css"/>
+    <title>S'inscrire</title>
 </h:head>
 <body>
 <p:panel id="connexion">
@@ -16,7 +18,7 @@
         <table class="center">
             <tr>
                 <td colspan="3" align="center">
-                    <p:button outcome="index" value="Retour" icon="fa fa-glass"/>
+                    <p:button action="#{navigationController.goTo('login')}" value="Retour" icon="fa fa-glass"/>
                     <h3>Formulaire d'inscription</h3>
                 </td>
             </tr>

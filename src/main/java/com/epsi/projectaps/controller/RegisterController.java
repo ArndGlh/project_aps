@@ -54,6 +54,7 @@ public class RegisterController {
             if (currentUser) {
                 System.out.println("1current user : "+currentUser);
                 session.setAttribute("user", user);
+                session.setAttribute("page", "home");
                 return ACCUEIL_REDIRECT;
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Failed!", ""));
@@ -71,6 +72,7 @@ public class RegisterController {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
         session.setAttribute("user", null);
+        session.setAttribute("page", "login");
         return LOGIN_REDIRECT;
     }
 
