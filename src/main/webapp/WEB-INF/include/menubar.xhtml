@@ -2,7 +2,8 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:h="http://java.sun.com/jsf/html">
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
     <h:form>
         <p:menubar>
 
@@ -11,7 +12,7 @@
                 <p:menuitem value="Utilisateur" url="#" />
             </p:submenu>-->
 
-            <p:menuitem value="Accueil" url="accueil.xhtml" icon="fa-home" /> <!-- TODO icon not found -->
+            <p:menuitem value="Accueil" url="accueil.xhtml" icon="fa fa-home" /> <!-- TODO icon not found -->
 
             <p:menuitem value="Evénements" url="event.xhtml" icon="fa fa-calendar" />
 
@@ -20,6 +21,10 @@
             <p:menuitem value="Contacts" url="#" icon="fa fa-address-book" />
 
             <p:menuitem value="Profil" url="#" icon="fa fa-user" />
+
+            <f:facet name="options" rendered="#{session.getAttribute('user') != null}">
+                <p:outputLabel value="#{session.getAttribute('user').userName}" />
+            </f:facet>
 
         </p:menubar>
     </h:form>

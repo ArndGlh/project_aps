@@ -6,8 +6,8 @@ import java.util.Locale;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import com.epsi.projectaps.dao.UserDao;
 import com.epsi.projectaps.model.User;
@@ -48,8 +48,11 @@ public class RegisterController {
     public String verifyUser() {
         try {
             boolean currentUser = new UserDao().findUser(user).first();
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
             if (currentUser) {
                 System.out.println("1current user : "+currentUser);
+                session.setAttribute("user", user);
                 return ACCUEIL_REDIRECT;
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Failed!", ""));

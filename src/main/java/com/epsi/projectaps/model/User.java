@@ -1,5 +1,8 @@
 package com.epsi.projectaps.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
 	private int id;
@@ -7,13 +10,17 @@ public class User {
 	private String password;
 	private String passwordConfirm;
 	private String userMail;
+	private List<User> contacts;
 
-	public User(){}
+	public User(){
+		this.contacts = new ArrayList<>();
+	}
 
 	public User(String username, String password, String usermail) {
 		this.userName = username;
 		this.password = password;
 		this.userMail = usermail;
+		this.contacts = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -54,5 +61,13 @@ public class User {
 
 	public void setUserMail(String userMail) {
 		this.userMail = userMail;
+	}
+
+	public List<User> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<User> contacts) {
+		this.contacts = contacts;
 	}
 }
