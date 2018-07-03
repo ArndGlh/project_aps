@@ -22,8 +22,10 @@
 
             <p:menuitem value="Profil" url="#" icon="fa fa-user" />
 
-            <f:facet name="options" rendered="#{session.getAttribute('user') != null}">
-                <p:outputLabel value="#{session.getAttribute('user').userName}" />
+            <f:facet name="options">
+                <p:outputLabel value="#{session.getAttribute('user').userName}" rendered="#{session.getAttribute('user') != null}" />
+                <p:outputLabel value=" " rendered="#{session.getAttribute('user') != null}" />
+                <p:commandButton action="#{registerController.logout}" rendered="#{session.getAttribute('user') != null}" value="Déconnexion" icon="fa fa-sign-out-alt" />
             </f:facet>
 
         </p:menubar>

@@ -17,6 +17,7 @@ import org.primefaces.event.ToggleEvent;
 @RequestScoped
 public class RegisterController {
     private static final String ACCUEIL_REDIRECT = "accueil";
+    private static final String LOGIN_REDIRECT = "index";
     private User user = new User();
 
     public RegisterController() {
@@ -64,6 +65,13 @@ public class RegisterController {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Failed!", ""));
             return null;
         }
+    }
+
+    public String logout() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+        session.setAttribute("user", null);
+        return LOGIN_REDIRECT;
     }
 
 
