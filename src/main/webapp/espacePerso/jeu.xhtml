@@ -12,10 +12,9 @@
     <h:outputStylesheet name="css/theme_fontawesome.css" />
     <title>Jeux</title>
     <ui:insert name="metadata"/>
-    <f:event type="preRenderView" listener="#{navigationController.isLoggedIn}" />
 </h:head>
 <h:body>
-    <ui:include src="/WEB-INF/include/menubar.xhtml" />
+    <ui:include src="/espacePerso/menubar.xhtml" />
     <h2>Jeux</h2><br/>
     <p:button outcome="new_jeu" value="New" icon="fa fa-plus-circle fa-sm" />
     <h:form id="formListJeux">

@@ -1,0 +1,33 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+    <h:form>
+        <p:menubar>
+
+            <!--<p:submenu label="Recherche" icon="fa fa-search">
+                <p:menuitem value="Evénement" url="#" />
+                <p:menuitem value="Utilisateur" url="#" />
+            </p:submenu>-->
+
+            <p:menuitem value="Accueil" outcome="/espacePerso/accueil" icon="fa fa-home" />
+
+            <p:menuitem value="Evénements" outcome="/espacePerso/event" icon="fa fa-calendar" />
+
+            <p:menuitem value="Jeux" outcome="/espacePerso/jeu" icon="fa fa-dice" />
+
+            <!--<p:menuitem value="Contacts" outcome="espacePerso/contacts" icon="fa fa-address-book" />-->
+
+            <!--<p:menuitem value="Profil" outcome="espacePerso/profil" icon="fa fa-user" />-->
+
+            <f:facet name="options">
+                <p:outputLabel value="#{registerController.userName}" rendered="#{registerController.isLoggedIn()}" />
+                <p:outputLabel value=" " rendered="#{registerController.isLoggedIn()}" />
+                <p:commandButton action="#{registerController.logout()}" rendered="#{registerController.isLoggedIn()}" value="Déconnexion" icon="fa fa-sign-out-alt" />
+            </f:facet>
+
+        </p:menubar>
+    </h:form>
+</ui:composition>

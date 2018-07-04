@@ -11,6 +11,7 @@ public class User {
 	private String passwordConfirm;
 	private String userMail;
 	private List<User> contacts;
+	public boolean authenticated;
 
 	public User(){
 		this.contacts = new ArrayList<>();
@@ -69,5 +70,13 @@ public class User {
 
 	public void setContacts(List<User> contacts) {
 		this.contacts = contacts;
+	}
+
+	public boolean isAuthenticated() {
+		return authenticated;
+	}
+
+	public void setAuthenticated(boolean authenticated) {
+		this.authenticated = authenticated;
 	}
 }

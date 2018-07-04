@@ -103,6 +103,16 @@
 			<version>5.1.6</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/javax.enterprise/cdi-api -->
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>1.0-SP1</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
 		<!-- apache commons ? -->
 
 	</dependencies>

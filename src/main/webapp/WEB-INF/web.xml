@@ -9,11 +9,10 @@
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-    <servlet>
-        <servlet-name>Register</servlet-name>
-        <servlet-class>com.epsi.projectaps.servlet.RegisterServlet</servlet-class>
-    </servlet>
-
+    <!--<servlet>-->
+        <!--<servlet-name>Restriction</servlet-name>-->
+        <!--<servlet-class>com.epsi.projectaps.filters.RestrictionServlet</servlet-class>-->
+    <!--</servlet>-->
 
 	<servlet-mapping>
 		<servlet-name>JSF Servlet</servlet-name>
@@ -24,15 +23,19 @@
 		<servlet-name>JSF Servlet</servlet-name>
 		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Restriction</servlet-name>-->
+        <!--<url-pattern>/espacePerso/*</url-pattern>-->
+    <!--</servlet-mapping>-->
 
-    <servlet-mapping>
-        <servlet-name>Register</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
-
-
-
-
+    <filter>
+        <filter-name>RestrictionFilter</filter-name>
+        <filter-class>com.epsi.projectaps.filters.RestrictionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>RestrictionFilter</filter-name>
+        <url-pattern>/espacePerso/*</url-pattern>
+    </filter-mapping>
 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>

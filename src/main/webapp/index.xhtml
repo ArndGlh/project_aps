@@ -28,12 +28,12 @@
                 </tr>
                 <tr>
                     <td>Identifiant</td>
-                    <td><p:inputText value="#{registerController.user.userName}" required="true" id="Username2"/>
+                    <td><p:inputText value="#{registerController.userName}" required="true" id="Username2"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Mot de Passe</td>
-                    <td><p:password value="#{registerController.user.password}" required="true" feedback="true"
+                    <td><p:password value="#{registerController.password}" required="true" feedback="true"
                                     id="Password2"/></td>
                 </tr>
                 <tr>
@@ -47,7 +47,7 @@
                 <tr>
                     <td colspan="3" align="center">
                         <p:outputLabel></p:outputLabel>
-                        <p:button  action="#{navigationController.goTo('register')}"  id="register" value="S'inscrire" styleClass="btn"/>
+                        <p:button outcome="register.xhtml" id="register" value="S'inscrire" styleClass="btn"/>
                     </td>
                 </tr>
             </table>

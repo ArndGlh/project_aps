@@ -1,21 +1,15 @@
 package com.epsi.projectaps.controller;
 
-import com.epsi.projectaps.dao.EventDao;
 import com.epsi.projectaps.dao.JeuDao;
-import com.epsi.projectaps.model.Event;
 import com.epsi.projectaps.model.Jeu;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 

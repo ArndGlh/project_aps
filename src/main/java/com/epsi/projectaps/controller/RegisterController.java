@@ -1,33 +1,29 @@
 package com.epsi.projectaps.controller;
 
+import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.Locale;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
-
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import com.epsi.projectaps.dao.UserDao;
 import com.epsi.projectaps.model.User;
-import org.primefaces.event.ToggleEvent;
 
-@ManagedBean
-@RequestScoped
-public class RegisterController {
-    private static final String ACCUEIL_REDIRECT = "accueil";
-    private static final String LOGIN_REDIRECT = "index";
+@Named
+@SessionScoped
+public class RegisterController implements Serializable{
+    private static final String ACCUEIL_REDIRECT = "espacePerso/accueil";
+    private static final String LOGIN_REDIRECT = "/index.xhtml";
+    private static final String REGISTER_REDIRECT = "register";
+
+    private String userName;
+    private String password;
+    private String passwordConfirm;
+    private String userMail;
     private User user = new User();
 
     public RegisterController() {
-        FacesContext.getCurrentInstance().getViewRoot()
-                .setLocale(new Locale("en"));
-    }
 
-    public void handleToggle(ToggleEvent event) {
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Toggled", "Visibility:" + event.getVisibility());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public String addUser() throws SQLException {
@@ -35,30 +31,33 @@ public class RegisterController {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Registration failure : passwords must match", ""));
         } else {
             UserDao userDao = new UserDao();
-            if (userDao.addUser(user) == 1) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Congratulations, registration has been successful", ""));
-            } else {
+            if(!userDao.findUser(user).first()) {
+                if (userDao.addUser(user) == 1) {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Congratulations, registration has been successful", ""));
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Registration failure : A problem occur during registration", ""));
+                    return LOGIN_REDIRECT;
+                }
+            }else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Registration failure : A problem occur during registration", ""));
-                return "index.xhtml";
+                return REGISTER_REDIRECT;
             }
             user = null;
         }
-        return "accueil.xhtml";
+        return ACCUEIL_REDIRECT;
     }
 
     public String verifyUser() {
         try {
+            user.setUserName(userName);
+            user.setPassword(password);
             boolean currentUser = new UserDao().findUser(user).first();
             FacesContext facesContext = FacesContext.getCurrentInstance();
-            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
             if (currentUser) {
-                System.out.println("1current user : "+currentUser);
-                session.setAttribute("user", user);
-                session.setAttribute("page", "home");
+                user.setAuthenticated(true);
                 return ACCUEIL_REDIRECT;
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Failed!", ""));
-                System.out.println("2current user : "+currentUser);
                 return null;
             }
         } catch (Exception e) {
@@ -69,13 +68,13 @@ public class RegisterController {
     }
 
     public String logout() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-        session.setAttribute("user", null);
-        session.setAttribute("page", "login");
+        user.setAuthenticated(false);
         return LOGIN_REDIRECT;
     }
 
+    public boolean isLoggedIn() {
+        return user.isAuthenticated();
+    }
 
     // ==================================================================
     public User getUser() {
@@ -84,5 +83,37 @@ public class RegisterController {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public String getUserMail() {
+        return userMail;
+    }
+
+    public void setUserMail(String userMail) {
+        this.userMail = userMail;
     }
 }
